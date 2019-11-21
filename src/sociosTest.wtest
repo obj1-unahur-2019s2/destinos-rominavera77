@@ -1,0 +1,46 @@
+import viajes.*
+import socios.*
+
+describe "Socios"{
+	var roque =  new Socio(maximoDeActividades=2,idiomasQueHabla["ingles","guarani"])
+	var ana = new Socio(maximoDeActividades=3,idiomasQueHabla["español"])
+	var viajeCorto = new ViajeDePlaya(largoPlaya=1000)
+	var viajeLargo = new ViajeDePlaya(largoPlaya=2000)
+	var claseGim = new ClaseDeGimnasia()
+	fixture{
+		roque.realizoUnaActividad(viajeCorto)
+		roque.realizoUnaActividad(viajeLargo)
+		ana.realizoUnaActividad(viajeCorto)
+		ana.realizoUnaActividad(viajeLargo)
+	}
+	
+	test "Roque"{
+		assert.that(roque.esAdoradorDelSol())
+		assert.equals([viajeLargo],roque.actividadesEsforzadas())
+		roque.realizoUnaActividad(claseGim)
+		assert.throwsException({roque.realizoUnaActividad(claseGim)})
+		//assert.throwsException({parcelita.plantar(new Soja(anioObtencion = 2004, altura = 2))})
+		
+	}
+	
+	test "Ana"{
+		ana.realizoUnaActividad(claseGim)
+		assert.notThat(ana.esAdoradorDelSol())
+		assert.equals([viajeLargo,claseGim],ana.actividadesEsforzadas())
+	}
+}
+
+/*P.ej. tomemos a Roque, un socio que hizo 2 viajes a la playa, 
+ * con longitudes de 1000 y 2000 metros respectivamente, 
+ * y que tiene un máximo de 2 actividades. En este caso:
+
+roque.esAdoradorDelSol() devuelve true.
+roque.actividadesEsforzadas() devuelve una colección que tiene solamente el viaje de 2000 metros de playa.
+si registramos que Roque realiza una clase de gimnasia, se debe generar un error.
+Si Ana es una socia que hizo dos viajes iguales a los que hizo Roque, 
+* pero tiene un máximo de 3 actividades, 
+* entonces sí le podemos registrar una clase de gimnasia. 
+* Después de registrarla, obtenemos que Ana ya no es adoradora del sol, 
+* y su colección de actividades esforzadas
+*  incluye al viaje de 2000 metros de playa y a la clase. */
+

@@ -1,0 +1,72 @@
+import viajes.*
+
+describe "Test Viajes"{
+
+	test "Excursion a Ciudad con  4 atracciones" {
+		var excurcionCiudad = new ExcursionACiudad(cantidadDeAtracciones=4)
+		assert.equals(2,excurcionCiudad.cantidadDeDias())
+		assert.notThat(excurcionCiudad.implicaEsfuerzo())
+		assert.notThat(excurcionCiudad.sirveParaBroncearse())
+	}
+	test " Excursión a Ciudad Tropical con 4 atracciones"{
+		var excurcionCiudadT = new ExcursionACiudadTropical(cantidadDeAtracciones=4)
+		assert.equals(3,excurcionCiudadT.cantidadDeDias())
+		assert.notThat(excurcionCiudadT.implicaEsfuerzo())
+		assert.that(excurcionCiudadT.sirveParaBroncearse())
+	}
+	test  "Excursión a Ciudad con 8 atracciones"{
+		var excurcionCiudad = new ExcursionACiudad(cantidadDeAtracciones=8)
+		assert.equals(4,excurcionCiudad.cantidadDeDias())
+		assert.that(excurcionCiudad.implicaEsfuerzo())
+		assert.notThat(excurcionCiudad.sirveParaBroncearse())
+}
+	test "Excursión a Ciudad Tropical con 8 atracciones"{
+		var excurcionCiudadT = new ExcursionACiudadTropical(cantidadDeAtracciones=8)
+		assert.equals(5,excurcionCiudadT.cantidadDeDias())
+		assert.that(excurcionCiudadT.implicaEsfuerzo())
+		assert.that(excurcionCiudadT.sirveParaBroncearse())
+	}
+	test "Excursión a Ciudad tropical con 10 atracciones"{
+		var excurcionCiudadT = new ExcursionACiudadTropical(cantidadDeAtracciones=10)
+		assert.equals(6,excurcionCiudadT.cantidadDeDias())
+		assert.notThat(excurcionCiudadT.implicaEsfuerzo())
+		assert.that(excurcionCiudadT.sirveParaBroncearse())
+	}
+	test " Salida de Trekking "{
+		var trekking1 = new SalidaDetrekking(kmSenderos=100,diasDeSol=130)
+		assert.equals(2,trekking1.cantidadDeDias())
+		assert.that(trekking1.implicaEsfuerzo())
+		assert.notThat(trekking1.sirveParaBroncearse())
+	}
+	test " Salida de Trekking 2 "{
+		var trekking2 = new SalidaDetrekking(kmSenderos=50,diasDeSol=240)
+		assert.equals(1,trekking2.cantidadDeDias())
+		assert.notThat(trekking2.implicaEsfuerzo())
+		assert.that(trekking2.sirveParaBroncearse())
+	}
+	test " Salida de Trekking 3 "{
+		var trekking3 = new SalidaDetrekking(kmSenderos=250,diasDeSol=130)
+		assert.equals(5,trekking3.cantidadDeDias())
+		assert.that(trekking3.implicaEsfuerzo())
+		assert.that(trekking3.sirveParaBroncearse())
+	}
+}
+/*una salida de 100 kilómetros a un lugar con 130 días de sol por año:
+ *  lleva 2 días, implica esfuerzo, y no sirve para broncearse.
+una salida de 50 kilómetros a un lugar con 240 días de sol por año: 
+* lleva 1 día, no implica esfuerzo, y sí sirve para broncearse.
+una salida de 250 kilómetros a un lugar con 130 días de sol por año: 
+* lleva 5 días, implica esfuerzo, y sirve para broncearse. */
+
+
+/*una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, 
+ * lleva 2 días, no implica esfuerzo, y no sirve para broncearse.
+una excursión a ciudad tropical en la que se visitan 4 atracciones, 
+* lleva 3 días, no implica esfuerzo, y sí sirve para broncearse.
+una excursión a ciudad normal (no tropical) en la que se visitan 8 atracciones, 
+* lleva 4 días, implica esfuerzo, y no sirve para broncearse.
+una excursión a ciudad tropical en la que se visitan 8 atracciones, 
+* lleva 5 días, implica esfuerzo, y sirve para broncearse.
+una excursión a ciudad tropical en la que se visitan 10 atracciones,
+*  lleva 6 días, no implica esfuerzo, y sí sirve para broncearse. */
+
