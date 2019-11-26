@@ -4,7 +4,7 @@ import viajes.*
 class TallerLiterario inherits Viaje{
 	const property libros = []
 	
-	method idiomasUsados(){
+	override method idiomasUsados(){
 		return libros.map({libro => libro.idioma()})
 	}
 	method diasQueLleva(){
@@ -21,7 +21,7 @@ class TallerLiterario inherits Viaje{
 }
 
 class Libro{
-	const property idioma
+	const property idioma  
 	const property cantidadDePaginas
 	const property autor = ""
 }

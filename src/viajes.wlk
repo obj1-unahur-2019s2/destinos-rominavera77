@@ -4,6 +4,11 @@ import talleresLiterarios.*
 class Viaje {
 	const property idiomas = []
 	
+	method idiomasUsados() { return idiomas }
+	
+	method usaElIdioma(unIdioma) {
+		return self.idiomasUsados().contains(unIdioma)
+	}
 	method implicaEsfuerzo()
 	method sirveParaBroncearse()
 	method cantidadDeDias()	

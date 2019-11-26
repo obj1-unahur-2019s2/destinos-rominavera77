@@ -1,10 +1,11 @@
 import viajes.*
+import talleresLiterarios.*
 
 class Socio {
 	const property actividades = []
 	var property maximoDeActividades = 0
 	var property edad = 0
-	const property idiomasQueHabla = []
+
 	
 	method esAdoradorDelSol(){ 
 		return actividades.all({actividad => actividad.sirveParaBroncearse()})
@@ -23,7 +24,7 @@ class Socio {
 	method llegoAlMaximo(){
 		return actividades.size() == maximoDeActividades
 	}
-	method leAtrae(actividad)
+	method leAtrae(actividad){return self.actividades() }
 }
 
 class SocioTranquilo inherits Socio{
@@ -40,8 +41,15 @@ class SocioCoherente inherits Socio{
 }
 
 class SocioRelajado inherits Socio{
+	/*P.ej. si un socio relajado habla español y quechua, 
+* entonces una actividad en español le va a atraer, una en quechua y aymará también, 
+* una en francés e italiano no. */ 
+	const property idiomasQueHabla = []
+	
 	override method leAtrae(actividad){
-		//return idiomasQueHabla.any({idioma => actividad.idiomas()})
+		return idiomasQueHabla.any({unIdioma =>
+			actividad.usaElIdioma(unIdioma)
+		})
 	}
 }
 /*Se debe agregar al modelo la pregunta de si una actividad le atrae a un socio o no.
@@ -56,6 +64,8 @@ si es un socio coherente, entonces: si es adorador del sol,
 * si no, debe implicar esfuerzo.
 si es un socio relajado, la condición es hablar al menos uno 
 * de los idiomas que se usan en la actividad. 
+* ---------------------------------------------------------------------------------------
+* ///////////////////////////////////////////////////////////////////////////
 * P.ej. si un socio relajado habla español y quechua, 
 * entonces una actividad en español le va a atraer, una en quechua y aymará también, 
 * una en francés e italiano no. */

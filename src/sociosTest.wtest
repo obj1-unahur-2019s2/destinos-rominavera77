@@ -2,11 +2,12 @@ import viajes.*
 import socios.*
 
 describe "Socios"{
-	var roque =  new Socio(maximoDeActividades=2,idiomasQueHabla["ingles","guarani"])
-	var ana = new Socio(maximoDeActividades=3,idiomasQueHabla["español"])
+	var roque =  new Socio(maximoDeActividades=2)
+	var ana = new Socio(maximoDeActividades=3)
 	var viajeCorto = new ViajeDePlaya(largoPlaya=1000)
 	var viajeLargo = new ViajeDePlaya(largoPlaya=2000)
 	var claseGim = new ClaseDeGimnasia()
+	
 	fixture{
 		roque.realizoUnaActividad(viajeCorto)
 		roque.realizoUnaActividad(viajeLargo)
